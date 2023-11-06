@@ -1,0 +1,113 @@
+#importing modules and widgets
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QLabel, QLineEdit
+
+#declaring constants
+win_width, win_height = 200, 300
+win_x, win_y = 200, 200
+txt_title = "Magic calculator"
+txt_line = "Entry field"
+
+class MainWindow(QWidget):
+    def __init__(self, parent=None, flags=Qt.WindowFlags()):
+        super().__init__(parent=parent, flags=flags)
+        # creating and customizing the graphical elements:
+        self.initUI()
+        #connects the elements
+        # self.connects()
+        #determines how the window will look (text, size, location)
+        self.set_appear()
+        # start:
+        self.show()
+
+    def initUI(self):
+        ''' creates graphical elements '''
+        self.btn_impartire = QPushButton("/" ,self)
+        self.btn_inmultire = QPushButton("*" ,self)
+        self.btn_minus = QPushButton("-" ,self)
+        self.btn_plus = QPushButton("+" ,self)
+        self.btn_egal = QPushButton("=" ,self)
+        self.btn_punct = QPushButton("." ,self)
+        self.lable_finish = QLabel()
+        btnArr=[]
+        for i in range(0,10):
+            btnArr.append(QPushButton(str(i), self))
+       
+        self.btn_0 = QPushButton("0", self)
+        self.btn_1 = QPushButton("1", self)
+        self.btn_2 = QPushButton("2", self)
+        self.btn_3 = QPushButton("3", self)
+        self.btn_4 = QPushButton("4", self)
+        self.btn_5 = QPushButton("5", self)
+        self.btn_6 = QPushButton("6", self)
+        self.btn_7 = QPushButton("7", self)
+        self.btn_8 = QPushButton("8", self)
+        self.btn_9 = QPushButton("9", self)
+
+        self.layout_line = QVBoxLayout()
+
+        self.btn__1 = QPushButton("*-1" ,self)
+        self.btn_CE = QPushButton("CE" ,self)
+        self.btn_C = QPushButton("C" ,self)
+        self.btn_sageata = QPushButton("<-" ,self)
+
+        myWidget1 = QWidget()
+        layoutH1 = QHBoxLayout()
+        layoutH1.addWidget(self.btn_CE, alignment = Qt.AlignCenter)
+        layoutH1.addWidget(self.btn_C, alignment = Qt.AlignCenter)
+        layoutH1.addWidget(self.btn_sageata, alignment = Qt.AlignCenter)
+        layoutH1.addWidget(self.btn_impartire ,alignment=Qt.AlignCenter)
+        
+        
+
+        myWidget2 = QWidget()
+        layoutH2 = QHBoxLayout()
+        for button in btnArr:
+            layoutH2.addWidget(button, alignment = Qt.AlignCenter)
+        layoutH2.addWidget(self.btn_7, alignment = Qt.AlignCenter)
+        layoutH2.addWidget(self.btn_8, alignment = Qt.AlignCenter)
+        layoutH2.addWidget(self.btn_9, alignment = Qt.AlignCenter)
+        layoutH2.addWidget(self.btn_inmultire, alignment = Qt.AlignCenter)
+
+        myWidget3 = QWidget()
+        layoutH3 = QHBoxLayout()
+        layoutH3.addWidget(self.btn_4, alignment = Qt.AlignCenter)
+        layoutH3.addWidget(self.btn_5, alignment = Qt.AlignCenter)
+        layoutH3.addWidget(self.btn_6, alignment = Qt.AlignCenter)
+        layoutH3.addWidget(self.btn_minus, alignment = Qt.AlignCenter)
+
+        myWidget4 = QWidget()
+        layoutH4 = QHBoxLayout()
+        layoutH4.addWidget(self.btn_1, alignment = Qt.AlignCenter)
+        layoutH4.addWidget(self.btn_2, alignment = Qt.AlignCenter)
+        layoutH4.addWidget(self.btn_3, alignment = Qt.AlignCenter)
+        layoutH4.addWidget(self.btn_plus, alignment = Qt.AlignCenter)
+
+        myWidget5 = QWidget()
+        layoutH5 = QHBoxLayout()
+        layoutH5.addWidget(self.btn__1, alignment = Qt.AlignCenter)
+        layoutH5.addWidget(self.btn_0, alignment = Qt.AlignCenter)
+        layoutH5.addWidget(self.btn_punct, alignment = Qt.AlignCenter)
+        layoutH5.addWidget(self.btn_egal, alignment = Qt.AlignCenter)
+
+        myWidget1.setLayout(layoutH1)
+        myWidget2.setLayout(layoutH2)
+        myWidget3.setLayout(layoutH3)
+        myWidget4.setLayout(layoutH4)
+        myWidget5.setLayout(layoutH5)
+
+        self.layout_line.addWidget(myWidget1, alignment=Qt.AlignCenter)
+        self.layout_line.addWidget(myWidget2, alignment=Qt.AlignCenter)
+        self.layout_line.addWidget(myWidget3, alignment=Qt.AlignCenter)
+        self.layout_line.addWidget(myWidget4, alignment=Qt.AlignCenter)
+        self.layout_line.addWidget(myWidget5, alignment=Qt.AlignCenter)
+        self.setLayout(self.layout_line)
+    def set_appear(self):
+        self.setWindowTitle(txt_title)
+        self.resize(win_width, win_height)
+        self.move(win_x, win_y)
+
+
+app = QApplication([])
+mw = MainWindow()
+app.exec_()
